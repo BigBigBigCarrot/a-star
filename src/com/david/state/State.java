@@ -1,5 +1,13 @@
 package com.david.state;
 
+/**
+ * 
+ * @Description:每个state实例代表一个状态（ 一张图)，每个状态（图）可以生成一个或多个子状态（子图）
+ * @author dawei.bu<22597001@qq.com>
+ * @version v1.0
+ * @date 2017年7月22日
+ *
+ */
 public abstract class State implements Comparable
 {
 	//不同的图维数不同，固在抽象类State中不对矩阵进行声明
