@@ -25,7 +25,7 @@ public abstract class Open {
 	abstract public void addState(State state);
 	
 	/**
-	 * 弹出表中最优状态
+	 * 弹出表中最优状态(f值最小的状态)
 	 * @return State 最优状态
 	 */
 	abstract public State popMinState();

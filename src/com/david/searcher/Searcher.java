@@ -5,16 +5,44 @@ import java.util.ArrayList;
 import com.david.close.Close;
 import com.david.open.Open;
 import com.david.state.State;
-public class Searcher//主体流程、细节有待优化
+/**
+ * 
+ * @Description: a星算法搜索的主流程（细节有待优化）
+ * @author dawei.bu<22597001@qq.com>
+ * @version v1.0
+ * @date 2017年7月30日
+ *
+ */
+public class Searcher
 {
-	public State root;//根状态
-	public State targetState;//目标状态
-	public Open open;//open表(二叉堆,按f的大小计算)
-	public Close close;//close表(哈希？)
+	/**
+	 * 根状态
+	 */
+	public State root;
 	
-	ArrayList<State> bestSolution;//最优解的每一步状态
+	/**
+	 * 目标状态
+	 */
+	public State targetState;
 	
-	//统计数据
+	/**
+	 * open表(推荐用二叉堆实现,按f的大小计算)
+	 */
+	public Open open;
+
+	/**
+	 * close表(推荐用哈希实现,按f的大小计算)
+	 */
+	public Close close;
+	
+	/**
+	 * 记录最优解的每一个状态
+	 */
+	ArrayList<State> bestSolution;
+	
+	/**
+	 * 统计数据：搜索流程走了多少次
+	 */
 	private int countSearch;
 	
 	public Searcher(State root,Open open,Close close)
@@ -22,7 +50,7 @@ public class Searcher//主体流程、细节有待优化
 		this.root=root;
 		this.open=open;
 		this.close=close;
-		bestSolution=new ArrayList();
+		bestSolution=new ArrayList<State>();
 		
 		this.countSearch=0;
 	}
@@ -33,7 +61,7 @@ public class Searcher//主体流程、细节有待优化
 		State counterPart;//在close中查找是否有一样的State
 		State[] childs;//产生的子状态
 		
-		currentState=root;
+		currentState=root;//首次运行，当前状态即为根状态
 		open.addState(currentState);//将根状态添加到open中		
 		
 		while(true)//一直搜索直到找到最优解为止
@@ -50,7 +78,7 @@ public class Searcher//主体流程、细节有待优化
 			else
 			{
 				childs=currentState.generateChilds();//从open中弹出的状态产生子状态
-				close.addState(currentState);
+				close.addState(currentState);//已经生成过子状态的state放入close表
 				if(childs!=null)//有产生子状态
 				{
 					for(int i=0;i<=childs.length-1;i++)//检查所有子状态
@@ -60,7 +88,7 @@ public class Searcher//主体流程、细节有待优化
 							counterPart=close.findCounterPart(childs[i]);//在close中查找是否有与参数中的childs[i]一样的State
 							if(counterPart!=null)//如果在close表中找到了一样的State
 							{
-								if(currentState.getF()<counterPart.getF())//若当前的childs[i]的f小与已存在的一样的close中的State的f
+								if(currentState.getF()<counterPart.getF())//若当前的childs[i]的f小于已存在的一样的close中的State的f
 								{
 									counterPart.setFGH(currentState);//重新设置已存在State的fgh
 									counterPart.resetDescendantFGH();//重新设置已存在State的后代状态的fgh

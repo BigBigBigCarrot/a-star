@@ -10,20 +10,56 @@ package com.david.state;
  */
 public abstract class State implements Comparable
 {
-	//不同的图维数不同，固在抽象类State中不对矩阵进行声明
+	//不同的图维数不同，所以在抽象类State中不对矩阵进行声明
+	
+	/**
+	 * 估价：f=g+h
+	 * f数值越小，状态越优
+	 */
 	protected int f;
+	
 	protected int g;
 	protected int h;
 	
-	public State father;//父状态
-	public State[] childs;//子状态
-	public State targetState;//目标状态（用于参与h*(n)的值的运算）
+	/**
+	 * 父状态
+	 */
+	public State father;
+	
+	/**
+	 * 当前状态所产生的所有子状态
+	 */
+	public State[] childs;
+	
+	/**
+	 * 目标状态（用于参与h*(n)的值的运算）
+	 */
+	public State targetState;
 
+	/**
+	 * 
+	 * @Description: 获取当前状态的矩阵
+	 * @date 2017年7月30日
+	 * @return
+	 */
 	public abstract Object getMatrix();
 	
-	public abstract boolean isTarget();//判断是否为目标状态
+	/**
+	 * 
+	 * @Description: 当前状态是否为目标状态
+	 * @date 2017年7月30日
+	 * @return
+	 */
+	public abstract boolean isTarget();
 
-	public abstract boolean isMatrixEquals(State state);//判断矩阵是否相同
+	/**
+	 * 
+	 * @Description: 判断矩阵是否相同
+	 * @date 2017年7月30日
+	 * @param state
+	 * @return
+	 */
+	public abstract boolean isMatrixEquals(State state);
 	
 	public abstract int getF();
 	public abstract int getG();
@@ -32,6 +68,7 @@ public abstract class State implements Comparable
 	public abstract void setFGH(State state);
 	public abstract void evaluateF();
 	public abstract void evaluateG();
+	
 	/**
 	 * 根据targetState与当前状态计算估计值h*(n)
 	 */
