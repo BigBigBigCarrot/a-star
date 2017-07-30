@@ -1,10 +1,14 @@
 package com.david.main;
+import java.util.Calendar;
+import java.util.Date;
+
 import com.david.close.Close;
 import com.david.close.CloseArrayList;
 import com.david.close.CloseHashMap;
 import com.david.open.Open;
 import com.david.open.OpenArrayList;
 import com.david.open.OpenBinaryTree;
+import com.david.open.OpenLinkedList;
 import com.david.searcher.Searcher;
 import com.david.state.Digital;
 import com.david.state.Queen;
@@ -31,14 +35,19 @@ public class Main
 		
 		root.printMatrix();//输出初始矩阵
 		
-		open=new OpenArrayList();
+//		open=new OpenArrayList();
+		open=new OpenLinkedList();
 		//open=new OpenBinaryTree();
 		
 		close=new CloseArrayList();
 		//close=new CloseHashMap();//使用CloseHashMap(仅限于String矩阵)
 		searcher=new Searcher(root,open,close);
 
+		Date startDate=Calendar.getInstance().getTime();
+		
 		searcher.search();//开始搜索最优解的最后那一个状态
+		
+		Date endDate=Calendar.getInstance().getTime();
 		
 		System.out.println("搜索完成");
 		System.out.println("g:"+(searcher.targetState).getG());
@@ -47,6 +56,7 @@ public class Main
 		searcher.printSolution();//通过控制台将最优解的每一步输出出来
 		
 		//输出统计数据
+		System.out.println("开始时间:"+startDate+" 结束时间"+endDate);
 		System.out.println("共计搜索 --"+searcher.getCountSearch()+"次");
 		
 		System.out.println("open表--添加状态--"+open.getCountAdd()+"次");

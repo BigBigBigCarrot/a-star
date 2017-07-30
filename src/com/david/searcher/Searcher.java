@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.david.close.Close;
 import com.david.open.Open;
 import com.david.state.State;
-public class Searcher//主题流程、细节有待优化
+public class Searcher//主体流程、细节有待优化
 {
 	public State root;//根状态
 	public State targetState;//目标状态
