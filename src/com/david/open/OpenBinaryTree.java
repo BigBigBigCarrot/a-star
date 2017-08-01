@@ -11,7 +11,7 @@ public class OpenBinaryTree extends Open{
 	
 	public OpenBinaryTree(){
 		super();
-		tree=new BinaryTree();
+		tree=new BinaryTree<State>();
 	}
 	
 	@Override

@@ -16,7 +16,13 @@ ArrayList<State> arrayList;
 	public OpenArrayList()
 	{
 		super();
-		arrayList=new ArrayList();
+		arrayList=new ArrayList<State>();
+	}
+	
+	public OpenArrayList(int initialCapacity)
+	{
+		super();
+		arrayList=new ArrayList<State>(initialCapacity);
 	}
 	
 	public void addState(State state)

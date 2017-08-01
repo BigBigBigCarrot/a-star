@@ -18,6 +18,11 @@ public class CloseHashMap extends Close{
 	{
 		map=new HashMap<String,State>();
 	}
+	
+	public CloseHashMap(int initialCapacity)
+	{
+		map=new HashMap<String,State>(initialCapacity);
+	}
 		
 	public void addState(State state)
 	{

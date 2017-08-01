@@ -35,8 +35,8 @@ public class Main
 		
 		root.printMatrix();//输出初始矩阵
 		
-//		open=new OpenArrayList();
-		open=new OpenLinkedList();
+		open=new OpenArrayList(100000);
+//		open=new OpenLinkedList();
 		//open=new OpenBinaryTree();
 		
 		close=new CloseArrayList();

@@ -16,7 +16,12 @@ public class CloseArrayList extends Close {
 	
 	public CloseArrayList()
 	{
-		arrayList=new ArrayList();
+		arrayList=new ArrayList<State>();
+	}
+	
+	public CloseArrayList(int initialCapacity)
+	{
+		arrayList=new ArrayList<State>(initialCapacity);
 	}
 	
 	
